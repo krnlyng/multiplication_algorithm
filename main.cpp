@@ -19,9 +19,10 @@
 
 #include <iostream>
 #include <vector>
-#include <gmpxx.h>
+#include <cmath>
 
 #if USE_GMP
+#include <gmpxx.h>
 typedef mpz_class number;
 typedef unsigned long int digit_counter;
 #else
