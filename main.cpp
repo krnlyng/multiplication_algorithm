@@ -42,7 +42,7 @@ digit_counter max_num_of_digits_after_multiplication(const vector<number> &a, co
  * represented as vector of their digits, the return value is also represented
  * in the same way.
  */
-vector<number> multiply(const vector<number> &a, const vector<number> &b, number base)
+vector<number> multiply(const vector<number> &a, const vector<number> &b, const number &base)
 {
     vector<number> result;
 
@@ -85,7 +85,7 @@ vector<number> multiply(const vector<number> &a, const vector<number> &b, number
 
 /* this function returns x^y */
 #if USE_GMP
-number my_pow(const number &x, digit_counter &y)
+number my_pow(const number &x, const digit_counter &y)
 {
     mpz_class r;
     mpz_pow_ui(r.get_mpz_t(), x.get_mpz_t(), y);
@@ -96,7 +96,7 @@ number my_pow(const number &x, digit_counter &y)
 #endif
 
 /* this function returns the digit_counter-th digit of x in base base) */
-number get_digit(number x, digit_counter digit_number, number base)
+number get_digit(const number &x, const digit_counter &digit_number, const number &base)
 {
     if(base == 2)
     {
@@ -109,7 +109,7 @@ number get_digit(number x, digit_counter digit_number, number base)
 }
 
 /* this function returns the number of digits of x in base base */
-digit_counter num_of_digits(number x, number base)
+digit_counter num_of_digits(number x, const number &base)
 {
     digit_counter digits = 0;
     while(x) {
