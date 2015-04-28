@@ -23,16 +23,16 @@
 
 #if USE_GMP
 typedef mpz_class number;
-typedef unsigned long int digit_number;
+typedef unsigned long int digit_counter;
 #else
 typedef unsigned long long int number;
-typedef unsigned long int digit_number;
+typedef unsigned long int digit_counter;
 #endif
 
 using namespace std;
 
 /* this function returns the maximum number of digits after multiplication of a and b */
-digit_number max_num_of_digits_after_multiplication(const vector<number> &a, const vector<number> &b)
+digit_counter max_num_of_digits_after_multiplication(const vector<number> &a, const vector<number> &b)
 {
     return a.size() + b.size() + 2;
 }
@@ -48,11 +48,11 @@ vector<number> multiply(const vector<number> &a, const vector<number> &b, number
     // multiplication
     number carry = 0;
 
-    for(digit_number d = 0;d < max_num_of_digits_after_multiplication(a, b);d++)
+    for(digit_counter d = 0;d < max_num_of_digits_after_multiplication(a, b);d++)
     {
         number tmp = 0;
 
-        for(digit_number i = 0;i <= d;i++)
+        for(digit_counter i = 0;i <= d;i++)
         {
             if(!(i >= a.size() || d-i >= b.size()))
             {
@@ -84,7 +84,7 @@ vector<number> multiply(const vector<number> &a, const vector<number> &b, number
 
 /* this function returns x^y */
 #if USE_GMP
-number my_pow(const number &x, digit_number &y)
+number my_pow(const number &x, digit_counter &y)
 {
     mpz_class r;
     mpz_pow_ui(r.get_mpz_t(), x.get_mpz_t(), y);
@@ -94,16 +94,16 @@ number my_pow(const number &x, digit_number &y)
 #define my_pow pow
 #endif
 
-/* this function returns the digit_number-th digit of x in base base) */
-number get_digit(number x, digit_number digit_number, number base)
+/* this function returns the digit_counter-th digit of x in base base) */
+number get_digit(number x, digit_counter digit_number, number base)
 {
     return (x / (number)my_pow(base, digit_number)) % base;
 }
 
 /* this function returns the number of digits of x in base base */
-digit_number num_of_digits(number x, number base)
+digit_counter num_of_digits(number x, number base)
 {
-    digit_number digits = 0;
+    digit_counter digits = 0;
     while(x) {
         x /= base;
         digits++;
@@ -133,12 +133,12 @@ int main(int argc, char *argv[])
     b = strtoull(argv[3], NULL, 10);
 #endif
 
-    for(digit_number i = 0;i < num_of_digits(a, base);i++)
+    for(digit_counter i = 0;i < num_of_digits(a, base);i++)
     {
         av.push_back(get_digit(a, i, base));
     }
 
-    for(digit_number i = 0;i < num_of_digits(b, base);i++)
+    for(digit_counter i = 0;i < num_of_digits(b, base);i++)
     {
         bv.push_back(get_digit(b, i, base));
     }
