@@ -98,7 +98,14 @@ number my_pow(const number &x, digit_counter &y)
 /* this function returns the digit_counter-th digit of x in base base) */
 number get_digit(number x, digit_counter digit_number, number base)
 {
-    return (x / (number)my_pow(base, digit_number)) % base;
+    if(base == 2)
+    {
+        return (x >> digit_number) & 1;
+    }
+    else
+    {
+        return (x / (number)my_pow(base, digit_number)) % base;
+    }
 }
 
 /* this function returns the number of digits of x in base base */
