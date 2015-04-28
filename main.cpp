@@ -67,7 +67,7 @@ vector<number> multiply(const vector<number> &a, const vector<number> &b, number
     }
 
     // cleanup
-    for(digit_number i = result.size() - 1;i >= 0;i--)
+    for(vector<number>::size_type i = result.size() - 1;i >= 0;i--)
     {
         if(result[i] == 0)
         {
