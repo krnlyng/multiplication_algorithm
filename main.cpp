@@ -35,7 +35,7 @@ using namespace std;
 /* this function returns the maximum number of digits after multiplication of a and b */
 digit_counter max_num_of_digits_after_multiplication(const vector<number> &a, const vector<number> &b)
 {
-    return a.size() + b.size() + 2;
+    return a.size() + b.size();
 }
 
 /* this function multiplies a with b and returns a*b, where a and b are numbers
@@ -49,7 +49,7 @@ vector<number> multiply(const vector<number> &a, const vector<number> &b, const 
     // multiplication
     number carry = 0;
 
-    for(digit_counter d = 0;d < max_num_of_digits_after_multiplication(a, b);d++)
+    for(digit_counter d = 0;d <= max_num_of_digits_after_multiplication(a, b);d++)
     {
         number tmp = 0;
 
