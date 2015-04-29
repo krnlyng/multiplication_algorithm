@@ -92,7 +92,7 @@ number my_pow(const number &x, const digit_counter &y)
     return r;
 }
 #else
-#define my_pow pow
+#define my_pow(...) (number)pow(__VA_ARGS__)
 #endif
 
 /* this function returns the digit_counter-th digit of x in base base) */
