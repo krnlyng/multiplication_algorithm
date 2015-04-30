@@ -104,7 +104,7 @@ number get_digit(const number &x, const digit_counter &digit_number, const numbe
     }
     else
     {
-        return (x / (number)my_pow(base, digit_number)) % base;
+        return (x / my_pow(base, digit_number)) % base;
     }
 }
 
