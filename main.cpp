@@ -19,13 +19,13 @@
 
 #include <iostream>
 #include <vector>
-#include <cmath>
 
 #if USE_GMP
 #include <gmpxx.h>
 typedef mpz_class number;
 typedef unsigned long int digit_counter;
 #else
+#include <cmath>
 typedef unsigned long long int number;
 typedef unsigned long int digit_counter;
 #endif
@@ -112,10 +112,12 @@ number get_digit(const number &x, const digit_counter &digit_number, const numbe
 digit_counter num_of_digits(number x, const number &base)
 {
     digit_counter digits = 0;
+
     while(x) {
         x /= base;
         digits++;
     }
+
     return digits;
 }
 
@@ -123,11 +125,11 @@ int main(int argc, char *argv[])
 {
     number base;
     number a, b;
-    std::vector<number> av, bv, result;
+    vector<number> av, bv, result;
 
     if(argc != 4)
     {
-        std::cerr << "please specify three (positive integer) arguments (base, a and b)" << std::endl;
+        cerr << "please specify three (positive integer) arguments (base, a and b)" << endl;
         return -1;
     }
 
@@ -153,9 +155,9 @@ int main(int argc, char *argv[])
 
     result = multiply(av, bv, base);
 
-    for(std::vector<number>::size_type j = 0;j < result.size();j++)
+    for(vector<number>::size_type j = 0;j < result.size();j++)
     {
-        std::cout << "digit " << j << " of a * b in base " << base << " is " << result[j] << std::endl;
+        cout << "digit " << j << " of a * b in base " << base << " is " << result[j] << endl;
     }
 
     return 0;
